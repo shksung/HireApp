@@ -29,9 +29,7 @@ public class EzHireAdminService implements IEzHireAdminService {
     @Override
     public List<EzHireJobDTO> fetchAllJobs() {
         List<Job> jobs = jobRepo.findAll();
-        List<EzHireJobDTO> jobDTOS = new ArrayList<>();
-        EzHireObjectMapper.modelMapper.map(jobs, jobDTOS);
-        return jobDTOS;
+        return EzHireObjectMapper.entityListToDTOList(jobs, EzHireJobDTO.class);
     }
 
     @Override
