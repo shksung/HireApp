@@ -25,7 +25,4 @@ public class EzHireResumeDTO {
 
     private String experience;
 
-    private User resumeUser;
-
-    private Set<Job> jobs;
 }

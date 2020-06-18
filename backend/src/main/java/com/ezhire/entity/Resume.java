@@ -41,7 +41,7 @@ public class Resume {
     private User resumeUser;
 
     @ManyToMany(mappedBy = "resumes")
-    private Set<Job> jobs;
+    private List<Job> jobs;
 
 
 }

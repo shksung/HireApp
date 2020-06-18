@@ -38,6 +38,6 @@ public class Job {
             joinColumns = {@JoinColumn(name = "job_id")},
             inverseJoinColumns = {@JoinColumn(name = "resume_id")}
     )
-    private Set<Resume> resumes;
+    private List<Resume> resumes;
 
 }
