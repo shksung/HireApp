@@ -40,7 +40,11 @@ public class JobStatusInfo {
     @Column(name="outcome")
     private String outCome;
 
-    @ManyToOne
-    private User user;
+    @Column(name="master_status")
+    private String masterStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User jobUser;
 
 }

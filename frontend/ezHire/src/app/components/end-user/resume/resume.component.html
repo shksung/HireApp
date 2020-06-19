@@ -1,0 +1,31 @@
+
+
+<div class="btn-center">
+    <button class="btn" mat-raised-button color="primary" (click) = "openJobDialog()">Add</button>
+</div>
+
+<ng-template class="template" #add>
+    <h2 matDialogTitle>Add New Resume</h2>
+    <mat-dialog-content>
+        <div>
+            <p>Title</p>
+            <input class="input" [(ngModel)] = "title" />
+        </div>
+        <div>
+            <p>Description</p>
+            <textarea [(ngModel)] = "description" class="textarea">Enter Description... </textarea>
+        </div>
+        <div>
+            <p>Minimum Salary</p>
+            <input class="input" [(ngModel)] = "minWage"/>
+        </div>
+        <div>
+            <p>Maximum</p>
+            <input class="input" [(ngModel)] = "maxWage" />
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="addJob()" >Save</button>
+      <button mat-button matDialogClose color="primary">Close</button>
+    </mat-dialog-actions>
+  </ng-template>

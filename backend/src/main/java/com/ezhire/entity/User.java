@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -30,4 +31,8 @@ public class User {
     @OneToOne(mappedBy = "resumeUser")
     private Resume resume;
 
+    @OneToMany(mappedBy = "jobUser",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<JobStatusInfo> jobStatusInfos;
 }
