@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -15,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { JobListingComponent } from './components/end-user/job-listing/job-listing.component';
 import { ResumeComponent } from './components/end-user/resume/resume.component';
+import { AppliedJobsComponent } from './components/end-user/applied-jobs/applied-jobs.component';
+import { CandidateListingComponent } from './components/admin/candidate-listing/candidate-listing.component';
+import { CandidateEditorComponent } from './components/admin/candidate-listing/candidate-editor/candidate-editor.component';
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { ResumeComponent } from './components/end-user/resume/resume.component';
     JobsComponent,
     UserHeaderComponent,
     JobListingComponent,
-    ResumeComponent
+    ResumeComponent,
+    AppliedJobsComponent,
+    CandidateListingComponent,
+    CandidateEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,8 @@ import { ResumeComponent } from './components/end-user/resume/resume.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    AgGridModule.withComponents([CandidateEditorComponent])
   ],
   providers: [JobService],
   bootstrap: [AppComponent]

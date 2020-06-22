@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="job")
@@ -39,5 +38,10 @@ public class Job {
             inverseJoinColumns = {@JoinColumn(name = "resume_id")}
     )
     private List<Resume> resumes;
+
+    @OneToMany(mappedBy = "job",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<JobStatusInfo> statusInfos;
 
 }

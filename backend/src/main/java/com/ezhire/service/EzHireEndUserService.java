@@ -45,6 +45,8 @@ public class EzHireEndUserService implements  IEzHireEndUserService {
         User user = userRepo.getOne(userId);
         Job job = jobRepo.getOne(jobId);
         JobStatusInfo statusInfo = new JobStatusInfo();
+        statusInfo.setJobUser(user);
+        statusInfo.setJob(job);
         if(user.getResume() != null) {
             job.getResumes().add(user.getResume());
             jobRepo.save(job);
@@ -56,5 +58,14 @@ public class EzHireEndUserService implements  IEzHireEndUserService {
     public List<EzHireJobDTO> fetchAppliedJobs(Integer userId) {
         User user = userRepo.getOne(userId);
         return EzHireObjectMapper.entityListToDTOList(user.getResume().getJobs(), EzHireJobDTO.class);
+    }
+
+    @Override
+    public EzHireResumeDTO fetchResume(Integer userId) {
+        User user = userRepo.getOne(userId);
+        if(user.getResume() != null) {
+            return EzHireObjectMapper.modelMapper.map(user.getResume(), EzHireResumeDTO.class);
+        }
+        return null;
     }
 }

@@ -1,7 +1,10 @@
 package com.ezhire.controller;
 
 import com.ezhire.dto.EzHireJobDTO;
+import com.ezhire.dto.EzHireJobStatusInfoDTO;
+import com.ezhire.entity.JobStatusInfo;
 import com.ezhire.service.IEzHireAdminService;
+import com.sun.tools.internal.ws.processor.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +30,8 @@ public class EzHireAdminController {
 
     @PutMapping
     public ResponseEntity<?> editJob(@RequestBody EzHireJobDTO jobDTO) {
-            return new ResponseEntity<>(service.editJob(jobDTO), HttpStatus.OK);
+            service.editJob(jobDTO);
+            return new ResponseEntity<>(service.fetchAllJobs(), HttpStatus.OK);
     }
 
     @GetMapping(value="/delete/{id}")
@@ -35,4 +39,15 @@ public class EzHireAdminController {
             service.deleteJob(id);
             return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping(value = "/update-listing/{statusID}")
+    public ResponseEntity<?> updateJobCandidateStatus(@RequestBody EzHireJobStatusInfoDTO statusInfoDTO) {
+        return new ResponseEntity<>(service.updateJobCandidateStatus(statusInfoDTO), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/candidates")
+    public ResponseEntity<?> fetchCandidateListings(){
+        return new ResponseEntity<>(service.fetchStatusInfo(), HttpStatus.OK);
+    }
+
 }

@@ -7,8 +7,9 @@
       <span class="menu-spacer"></span>
       <div>
         <a mat-button routerLink="/admin/jobs"> Jobs</a>
-        <a mat-button [routerLink]=""> Candidate Status </a>
+        <a mat-button routerLink="/admin/candidates"> Candidate Status </a>
         <a mat-button [routerLink]=""> Contacts </a>
+        <a mat-button (click)="logout()"> Logout </a>
       </div>
     </mat-toolbar-row>
 <!--   

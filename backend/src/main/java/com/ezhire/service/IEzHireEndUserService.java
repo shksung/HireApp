@@ -9,4 +9,5 @@ public interface IEzHireEndUserService {
     EzHireResumeDTO submitResume(EzHireResumeDTO resumeDTO, Integer userId);
     void submitResumeForJob(Integer jobId, Integer userId);
     List<EzHireJobDTO> fetchAppliedJobs(Integer userId);
+    EzHireResumeDTO fetchResume(Integer userId);
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { User } from '../constants/user';
+import { Constants } from '../constants/constants';
 
 
 
@@ -21,22 +22,39 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        // return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
-        //     .pipe(map(user => {
-        //         // login successful if there's a jwt token in the response
-        //         if (user && user.token) {
-        //             // store user details and jwt token in local storage to keep user logged in between page refreshes
-        //             localStorage.setItem('currentUser', JSON.stringify(user));
-        //             this.currentUserSubject.next(user);
-        //         }
+        const loginUser = {
+            id: null,
+            userName: username, 
+            passWord: password,
+            role: null, 
+            name: null
+        }
+        const url = Constants.baseUrl + '/login';
+        return this.http.post<any>(url, loginUser)
+        .pipe(map(user => {
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+            }
 
-        //         return user;
-        //     }));
+            return user;
+        }));
     }
 
     logout() {
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+    }
+
+    loginHttp (userName, passWord): Observable<any> {
+        const loginUser = {
+            id: null,
+            userName: userName, 
+            passWord: passWord,
+            role: null, 
+            name: null
+        }
+        const url = Constants.baseUrl + '/login';
+        return this.http.post(url, loginUser)
     }
 }

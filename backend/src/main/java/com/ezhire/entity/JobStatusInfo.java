@@ -47,4 +47,8 @@ public class JobStatusInfo {
     @JoinColumn(name="user_id")
     private User jobUser;
 
+    @ManyToOne
+    @JoinColumn(name="job_id")
+    private Job job;
+
 }

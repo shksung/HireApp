@@ -21,5 +21,19 @@ export class JobService {
     return this.http.post(url, newJob);
   }
 
+  public fetchCandidates():Observable<any>{
+    const url = Constants.baseUrl + Constants.Urls.fetchStatuses;
+    return this.http.get(url);
+  }
+
+  public deleteJob(id):Observable<any> {
+    const url = Constants.baseUrl + '/admin/job/delete/' + id
+    return this.http.get(url); 
+  }
+
+  public editJob(job):Observable<any> {
+    const url = Constants.baseUrl + '/admin/job'
+    return this.http.put(url, job); 
+  }
 }
 

@@ -30,4 +30,9 @@ public class EzHireEndUserController {
     public ResponseEntity<?> fetchAppliedJobs(@PathVariable Integer userId) {
         return new ResponseEntity<>(endUserService.fetchAppliedJobs(userId), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/resume/fetch/{userId}")
+    public ResponseEntity<?> fetchResume(@PathVariable Integer userId){
+        return new ResponseEntity<>(endUserService.fetchResume(userId), HttpStatus.OK);
+    }
 }
