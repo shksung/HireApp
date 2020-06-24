@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="job")
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Job {
     @Id
+    @Column(name="job_id")
     @GeneratedValue(strategy= GenerationType.AUTO, generator="job_id_gen")
     @SequenceGenerator(name="job_id_gen", sequenceName="JOB_ID_GEN")
     private Integer id;
@@ -28,5 +30,18 @@ public class Job {
 
     @Column(name="maxwage")
     private Long maxWage;
+
+    @ManyToMany
+    @JoinTable(
+            name = "job_resume",
+            joinColumns = {@JoinColumn(name = "job_id")},
+            inverseJoinColumns = {@JoinColumn(name = "resume_id")}
+    )
+    private List<Resume> resumes;
+
+    @OneToMany(mappedBy = "job",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<JobStatusInfo> statusInfos;
 
 }

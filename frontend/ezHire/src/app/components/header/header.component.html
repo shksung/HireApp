@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <!-- <mat-icon >menu</mat-icon> -->
+      </button>
+      <h1>EzHire</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button routerLink="/admin/jobs"> Jobs</a>
+        <a mat-button routerLink="/admin/candidates"> Candidate Status </a>
+        <a mat-button [routerLink]=""> Contacts </a>
+        <a mat-button (click)="logout()"> Logout </a>
+      </div>
+    </mat-toolbar-row>
+<!--   
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+      </mat-toolbar-row> -->
+  </mat-toolbar>

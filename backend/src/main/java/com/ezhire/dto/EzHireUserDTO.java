@@ -13,4 +13,6 @@ public class EzHireUserDTO implements Serializable {
     private Integer id;
     private String userName;
     private String passWord;
+    private String name;
+    private String role;
 }
