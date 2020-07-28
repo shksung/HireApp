@@ -31,7 +31,7 @@ public class EzHireAdminController {
     @PutMapping
     public ResponseEntity<?> editJob(@RequestBody EzHireJobDTO jobDTO) {
             service.editJob(jobDTO);
-            return new ResponseEntity<>(service.fetchAllJobs(), HttpStatus.OK);
+            return new ResponseEntity<>(service.editJob(jobDTO), HttpStatus.OK);
     }
 
     @GetMapping(value="/delete/{id}")
